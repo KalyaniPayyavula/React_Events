@@ -9,7 +9,7 @@ function App() {
                      {name: "Plum", calories: "30"},
                      {name: "Sprouts", calories: "40"}]
 
-  const [itemList, setList] = useState(ItemsList);
+  const [list, setList] = useState(ItemsList);
 
 const removeJunk = (e) => {
  const filteredList = ItemsList.filter((v) => v.calories > 50)
@@ -20,12 +20,17 @@ const addAll = (e) => {
  setList(ItemsList)
  }
 
+ const removeIndividualItem = (e) => {
+ const newList = list.filter(v => v.name !== e.target.name)
+ setList(newList)
+ }
+
   return (
     <div className="App">
   
     {
-      itemList.map((v,i) => {
-        return <List name={v.name} calories={v.calories} key={`${i}${v.name}${v.calories}`}></List>
+      list.map((v,i) => {
+        return <List name={v.name} onClick={removeIndividualItem} calories={v.calories} key={`${i}${v.name}${v.calories}`}></List>
       })
     }
  
