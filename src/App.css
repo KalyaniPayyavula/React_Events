@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+.button-style{
+  width: 100px;
+  margin-top: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-left: 20px;
+  border: 2px solid palevioletred;
+  font-style: oblique;
+}
+

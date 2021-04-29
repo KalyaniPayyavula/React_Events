@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import List from './components/List'
+import './App.css'
 
 function App() {
+  const ItemsList = [{name: "Water melon", calories: "10"},
+                     {name: "Candy", calories: "100"},
+                     {name: "Ice cream", calories: "80"},
+                     {name: "Plum", calories: "30"},
+                     {name: "Sprouts", calories: "40"}]
+
+  const [itemList, setList] = useState(ItemsList);
+
+const removeJunk = (e) => {
+ const filteredList = ItemsList.filter((v) => v.calories > 50)
+ setList(filteredList)
+}
+
+const addAll = (e) => {
+ setList(ItemsList)
+ }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  
+    {
+      itemList.map((v,i) => {
+        return <List name={v.name} calories={v.calories} key={`${i}${v.name}${v.calories}`}></List>
+      })
+    }
+ 
+ <button onClick={removeJunk} className = "button-style">Remove Junk Food</button>
+ <button onClick={addAll} className = "button-style">Display All Items</button>
     </div>
   );
 }
